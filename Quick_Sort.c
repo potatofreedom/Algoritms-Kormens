@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void quicksort(int block[],int first, int last){
-   int left, right, pivot, temp;
+void quicksort(int *Array,int first, int last){
+   int left = 0, right = 0, pivot = 0, temp = 0;
 
    if(first < last)
    {
@@ -12,46 +12,50 @@ void quicksort(int block[],int first, int last){
 
       while(left < right)
       {
-         while(block[left] <= block[pivot] && left<last)
+         while(Array[left] <= Array[pivot] && left<last)
+         {
             left++;
-         while(block[right] > block[pivot])
+         }
+         while(Array[right] > Array[pivot])
+         {
             right--;
-         if(left < right){
-            temp = block[left];
-            block[left] = block[right];
-            block[right] = temp;
+         }
+         if(left < right)
+         {
+            temp = Array[left];
+            Array[left] = Array[right];
+            Array[right] = temp;
          }
       }
 
-      temp = block[pivot];
-      block[pivot] = block[right];
-      block[right] = temp;
-      quicksort(block,first,right-1);
-      quicksort(block,right+1,last);
+      temp = Array[pivot];
+      Array[pivot] = Array[right];
+      Array[right] = temp;
+      quicksort(Array,first,right-1);
+      quicksort(Array,right+1,last);
 
    }
 }
 
 int main (int argc, char* argv[])
 {
-    int *block;
-    int n;
+    int *Array = NULL;
+    int Size_Array = 0;
     printf("Size of array= ");
-    scanf("%d", &n);
-    block = malloc(n* sizeof(int));
-    for(int i = 0; i < n; ++i)
+    scanf("%d", &Size_Array);
+    Array = malloc(Size_Array* sizeof(int));
+    for(int i = 0; i < Size_Array; ++i)
     {
         printf("block[%d]= ", i);
-        scanf("%d", &block[i]);
+        scanf("%d", &Array[i]);
     }
     printf("\n");
-    quicksort(block,0,n-1);
-    for(int i = 0; i < n; ++i)
+    quicksort(Array,0,Size_Array-1);
+    for(int i = 0; i < Size_Array; ++i)
     {
-        printf("%d \t", block[i]);
+        printf("%d \t", Array[i]);
     }
     
-    free(block);
+    free(Array);
     return 0;
 }
-
