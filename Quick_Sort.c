@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void quicksort(int *Array,int first, int last){
+void QuickSort(int *Array,int first, int last){
    int left = 0, right = 0, pivot = 0, temp = 0;
 
    if(first < last)
@@ -50,7 +50,7 @@ int main (int argc, char* argv[])
         scanf("%d", &Array[i]);
     }
     printf("\n");
-    quicksort(Array,0,Size_Array-1);
+    QuickSort(Array,0,Size_Array-1);
     for(int i = 0; i < Size_Array; ++i)
     {
         printf("%d \t", Array[i]);
